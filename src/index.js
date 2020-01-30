@@ -1,5 +1,4 @@
 const express = require('express');
-const mysql = require('mysql');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -8,8 +7,13 @@ const path = require('path');
 // Connect server
 const app = express();
 
+app.listen(app.get('port') || 3333, () => {
+    console.log('Server starded on port', app.get('port'));
+}); 
+
+
 // Settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3333);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
@@ -38,39 +42,3 @@ app.use('/links', require('./routes/links'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Starting the server
-app.listen(app.get('port'), () => {
-    console.log('Server starded on port', app.get('port'));
-}); 
-
-/* Create connection with DB
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root', 
-    password: '123456',
-    database: 'users' 
-});
-
-// Connect DB
-db.connect((err) => {
-    if(err){
-        throw err;
-    }
-    console.log('MySQL Connected');
-});
-
-// Create DB
-app.get('/createdb', (req, res) => {
-    let sql = 'CREATE DATABASE users';
-    db.query(sql, (err, result) => {
-        if(err) throw err;
-        console.log(result);
-        res.send('database created...');
-    });
-});*/
-
-const test = test
-
-
-
