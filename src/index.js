@@ -70,7 +70,7 @@ app.get('/createdb', (req, res) => {
     });
 });*/
 
-
+const test = test
 
 
 
