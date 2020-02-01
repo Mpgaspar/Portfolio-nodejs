@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 module.exports = {
 
     database: {
         host: 'localhost',
         user: 'root', 
-        password: '123456',
+        password: process.env.PASSDATABASE,
         database: 'database_links'  
     }
 }

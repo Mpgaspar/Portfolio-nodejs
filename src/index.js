@@ -2,18 +2,16 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
-
+require('dotenv').config();
 
 // Connect server
 const app = express();
 
-app.listen(app.get('port') || 3333, () => {
-    console.log('Server starded on port', app.get('port'));
+app.listen(process.env.PORT, () => {
+    console.log('Server started on port', process.env.PORT);
 }); 
 
-
 // Settings
-app.set('port', process.env.PORT || 3333);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
@@ -36,13 +34,14 @@ app.use((req, res, next) => {
 })
 
 // Routes 
-app.use(require('./routes'));
+app.use('/', require('./routes/index'))
 app.use(require('./routes/authentication'));
-app.use(require('./routes/about'));
-app.use(require('./routes/skills'));
+app.use('/about', require('./routes/about'));
+app.use('/skills', require('./routes/skills'));
 app.use('/links', require('./routes/links'));
-app.use(require('./routes/experience'));
-app.use(require('./routes/service'));
+app.use('/experience', require('./routes/experience'));
+app.use('/contact', require('./routes/service'));
+
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

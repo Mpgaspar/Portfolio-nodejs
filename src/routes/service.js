@@ -5,11 +5,11 @@ require('dotenv').config();
 
 const pool = require('../database');
 
-router.get('/contact', (req, res) => {
+router.get('/', (req, res) => {
     res.render('email/contact');
 });
 
-router.post('/contact/send', async (req, res) => {
+router.post('/send', async (req, res) => {
     const output = `
     <p>You have a new contact request</p>
     <h3>Contact Details</h3>

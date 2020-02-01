@@ -3,7 +3,7 @@ const router = express.Router();
 
 const pool = require('../database');
 
-router.get('/skills', (req, res) => {
+router.get('/', (req, res) => {
     res.render('skills/skills');
 });
 

@@ -32,7 +32,7 @@ router.get('/delete/:id', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
     const { id } = req.params;
     const links = await pool.query('SELECT * FROM links WHERE ID=?', [id]);
-    res.render('../views/links/edit', { links: links[0] });
+    res.render('links/edit', { links: links[0] });
 })
 
 router.post('/edit/:id', async (req, res) => {
