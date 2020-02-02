@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
-    
-    res.render('about/edit');
+    const about = req.body.about;
+    res.render('about/edit', about);
 });
 
 /*router.get('/edit', async (req, res) => {
