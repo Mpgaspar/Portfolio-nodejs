@@ -22,6 +22,7 @@ router.post('/edit/:id', async (req, res) => {
         description
     };
     await pool.query('UPDATE about set ? WHERE id=?', [newAbout, id]);
+    req.flash('success', 'About Updated Succesfully');
     res.redirect('/about');
 });
 

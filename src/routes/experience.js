@@ -14,6 +14,7 @@ router.post('/add', async (req, res) => {
         description
     };
     await pool.query('INSERT INTO experience set ?', [newExperience]);
+    req.flash('success', 'Experience Saved Succesfully');
     res.redirect('/experience');
 });
 
@@ -25,6 +26,7 @@ router.get('/', async (req, res) => {
 router.get('/delete/:id', async (req, res) => {
     const { id } = req.params;
     await pool.query('DELETE FROM experience WHERE ID=?', [id]);
+    req.flash('success', 'Experience Removed Succesfully');
     res.redirect('/experience');
 });
 
@@ -42,6 +44,7 @@ router.post('/edit/:id', async (req, res) => {
         description
     };
     await pool.query('UPDATE experience set ? WHERE id=?', [newExperience, id]);
+    req.flash('success', 'Experience Updated Succesfully');
     res.redirect('/experience');
 });
 

@@ -14,6 +14,7 @@ router.post('/add', async (req, res) => {
         description
     };
     await pool.query('INSERT INTO skills set ?', [newSkill]);
+    req.flash('success', 'Skill Saved Succesfully');
     res.redirect('/skills');
 });
 
@@ -25,6 +26,7 @@ router.get('/', async (req, res) => {
 router.get('/delete/:id', async (req, res) => {
     const { id } = req.params;
     await pool.query('DELETE FROM skills WHERE ID=?', [id]);
+    req.flash('success', 'Skill Removed Succesfully');
     res.redirect('/skills');
 });
 
@@ -42,6 +44,7 @@ router.post('/edit/:id', async (req, res) => {
         description
     };
     await pool.query('UPDATE skills set ? WHERE id=?', [newSkill, id]);
+    req.flash('success', 'Skill Updated Succesfully');
     res.redirect('/skills');
 });
 
