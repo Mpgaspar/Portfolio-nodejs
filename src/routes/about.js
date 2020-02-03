@@ -1,26 +1,28 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('about/about');
-});
+const pool = require('../database');
 
-router.get('/edit', (req, res) => {
-    const about = req.body.about;
-    res.render('about/edit', about);
-});
-
-/*router.get('/edit', async (req, res) => {
-    const { id } = req.params;
-    const links = await pool.query('SELECT * FROM links WHERE ID=?', [id]);
-    res.render('../views/links/edit', { links: links[0] });
+router.get('/', async (req, res) => {
+    const about = await pool.query('SELECT * FROM about');
+    res.render('about/about', { about });
 })
 
-router.post('/edit', async (req, res) => {
-    const about = req.body;
-    
-    console.log(about);
+router.get('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const about = await pool.query('SELECT * FROM about WHERE ID=?', [id]);
+    res.render('about/edit', { about: about[0] });
+});
+
+router.post('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, description } = req.body;
+    const newAbout = {
+        title,
+        description
+    };
+    await pool.query('UPDATE about set ? WHERE id=?', [newAbout, id]);
     res.redirect('/about');
-})*/
+});
 
 module.exports = router;

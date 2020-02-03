@@ -1,14 +1,31 @@
 <br><br>
 <div class="container">
     <div class="row align-items-center">
+        <div class="card" style="width: 18rem;">
+            <img src="assets/mgaspar.jpg" class="card-img-top" alt="MyPhoto">
+            <div class="card-body">
+                <p class="card-text">Marcelo Gaspar</p>
+            </div>
+        </div>
         <h1 class="col">About me</h1>
-        <h4 class="col" name="about">I entered in the world of technology taking several programming courses
-focused on the web. In the last years, I graduated and worked as an
-orthopedic doctor, specialized in knee surgery, and always seek to
-improve myself through continuous learning.</h4>
+        {{#each about}}
+            <div class="col-md-6">
+                <div class="card bg-light mb-6">
+                    <div class="card-body">
+                            <h3 class="card-title text-uppercase">
+                                {{title}}
+                            </h3>
+                        </a>
+                        <p class="m-2">{{description}}</p>
+                    </div>
+                </div>
+            </div>   
+        {{/each}}
+    <br><br>
+    <div class="row offset-md-6">
+        <a href="/about/edit/1" class="btn btn-info btn-block text-uppercase">Edit About</a>
     </div>
-<br><br>    
-<div class="row offset-md-6">       
-   <a href="/about/edit" class="btn btn-info btn-block ">Edit About</a>                
 </div>
-</div>
+ 
+ 
+       

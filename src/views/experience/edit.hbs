@@ -1,15 +1,14 @@
-<br><br>
-<div class="container">
+<div class="container p4">
     <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-4 mx-auto">
             <div class="card">
                <div class="card-body">
-                   <form action="/about/edit/{{about.id}}" method="POST">
+                   <form action="/experience/edit/{{experience.id}}" method="POST">
                       <div class="form-group">
-                          <input type="text" value="{{about.title}}" class="form-control" name="title" placeholder="Title" autofocus>
+                          <input type="text" value="{{experience.title}}" class="form-control" name="title" placeholder="Title" autofocus>
                       </div>
                       <div class="form-group">
-                          <textarea name="description" rows="2" class="form-control" name="title" placeholder="Description">{{about.description}}</textarea>
+                          <textarea name="description" rows="2" class="form-control" name="title" placeholder="Description">{{experience.description}}</textarea>
                       </div>
                       <div class="form-group">
                       <button class="btn btn-success btn-block">SAVE</button>
